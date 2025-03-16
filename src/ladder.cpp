@@ -27,6 +27,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 
         while (i < shortStr.size() && j < longStr.size()) {
             if (shortStr[i] != longStr[j]) {
+                ++j;
                 ++countDiff;
                 if (countDiff > d)
                     return false;
