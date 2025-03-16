@@ -48,8 +48,7 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 
 void print_path(const vector<int>& v, int total) {
     if (v.empty()) {
-        std::cout << "No Path!" << std::endl;
-        return;
+        std::cout << std::endl;
     }
 
     for (int vertex : v)
