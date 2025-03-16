@@ -8,6 +8,9 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     int lenStr1 = str1.size();
     int lenStr2 = str2.size();
 
+    const string& shortStr = (lenStr1 < lenStr2) ? str1 : str2;
+    const string& longStr = (lenStr2 < lenStr1) ? str1 : str2;
+
     if (abs(lenStr1 - lenStr2) > 1)
         return false;
 
@@ -21,9 +24,6 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     } else {
         int i = 0;
         int j = 0;
-
-        const string& shortStr = (lenStr1 < lenStr2) ? str1 : str2;
-        const string& longStr = (lenStr2 < lenStr1) ? str1 : str2;
 
         while (i < shortStr.size() && j < longStr.size()) {
             if (shortStr[i] != longStr[j]) {
@@ -97,7 +97,7 @@ void print_word_ladder(const vector<string>& ladder) {
     std::cout << std::endl;
 }
 
-#define my_assert(condition) { cout << ((condition) ? " Passed" : " Failed") << endl; }
+#define my_assert(condition) { std::cout << ((condition) ? " Passed" : " Failed") << std::endl; }
 
 void verify_word_ladder() {
     set<string> word_list;
