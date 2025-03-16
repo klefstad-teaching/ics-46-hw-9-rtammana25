@@ -52,7 +52,6 @@ void print_path(const vector<int>& v, int total) {
         return;
     }
 
-    std::cout << "Path: ";
     for (int vertex : v)
         std::cout << vertex << " ";
 
