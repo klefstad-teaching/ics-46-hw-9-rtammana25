@@ -1,10 +1,11 @@
 #include "dijkstras.h"
 #include <algorithm>
+#include <limits>
 
 vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& previous) {
     int n = G.numVertices;
 
-    vector<int> distance(n, INF);
+    vector<long long> distance(n, INF);
     previous.assign(n, -1);
     vector<int> visited(n, false);
 
@@ -32,7 +33,16 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
             }
         }
     }
-    return distance;
+    
+    vector<int> result(n);
+    for (int i = 0; i < n; ++i) {
+        if (distance[i] >= INF)
+            result[i] = numeric_limits<int>::max();
+        else
+            result[i] = static_cast<int>(distance[i]);
+    }
+
+    return result;
 }
 
 vector<int> extract_shortest_path(const vector<int>& distances, const vector<int>& previous, int destination) {
@@ -51,7 +61,7 @@ void print_path(const vector<int>& v, int total) {
         return;
     }
 
-    std::cout << "Path: " << std::endl;
+    std::cout << "Path: ";
     for (int vertex : v)
         std::cout << vertex << " ";
 
