@@ -9,7 +9,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     int lenStr1 = str1.size();
     int lenStr2 = str2.size();
 
-    if (abs(lenStr1 - lenStr2) > d)
+    if (abs(lenStr1 - lenStr2) > 1)
         return false;
 
     int countDiff = 0;
