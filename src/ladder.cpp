@@ -1,5 +1,4 @@
 #include "ladder.h"
-#include <cassert>
 
 void error(string word1, string word2, string msg) {
     std::cerr << "Error: " << word1 << " -> " << word2 << ": " << msg << std::endl;
@@ -24,11 +23,10 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         int j = 0;
 
         const string& shortStr = (lenStr1 < lenStr2) ? str1 : str2;
-        const string& longStr = (lenStr1 > lenStr2) ? str1 : str2;
+        const string& longStr = (lenStr2 < lenStr1) ? str1 : str2;
 
         while (i < shortStr.size() && j < longStr.size()) {
             if (shortStr[i] != longStr[j]) {
-                ++j;
                 ++countDiff;
                 if (countDiff > d)
                     return false;
