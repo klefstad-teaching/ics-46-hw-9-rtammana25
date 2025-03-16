@@ -23,18 +23,10 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         int i = 0;
         int j = 0;
 
-        const string* shortStr;
-        const string* longStr;
+        const string& shortStr = (lenStr1 < lenStr2) ? str1 : str2;
+        const string& longStr = (lenStr1 > lenStr2) ? str1 : str2;
 
-        if (lenStr1 < lenStr2) {
-            const string& shortStr = str1;
-            const string& longStr = str2;
-        } else {
-            const string& shortStr = str2;
-            const string& longStr = str1;
-        }
-
-        while (i < shortStr->size() && j < longStr->size()) {
+        while (i < shortStr.size() && j < longStr.size()) {
             if (shortStr[i] != longStr[j]) {
                 ++j;
                 ++countDiff;
@@ -45,7 +37,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
                 ++j;
             }
         }
-        if (longStr->size() > j)
+        if (longStr.size() > j)
             ++countDiff;
     }
     
